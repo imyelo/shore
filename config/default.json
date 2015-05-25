@@ -1,0 +1,30 @@
+{
+  "name": "shore",
+  "version": "0.0.1",
+  "env": {
+    "NODE_ENV": "development",
+    "NODE_CONFIG_DIR": "./",
+    "DEBUG": "shore:*"
+  },
+  "self": {
+    "PORT": 3000,
+    "FAVICON_PATH": "./public/favicon.ico",
+    "TRUST_PROXY": true,
+    "LOG": {
+      "MAIN_PATH": "../logs/data.log",
+      "MORGAN_PATH": "../logs/access.log"
+    },
+    "DOMAIN": {
+    },
+    "SEQUELIZE": {
+      "HOST": "localhost",
+      "PORT": 3306,
+      "USERNAME": "shore",
+      "PASSWORD": "",
+      "DATABASE": "shore",
+      "DIALECT": "sqlite",
+      "STORAGE": "./data/db.sqlite",
+      "FORCE": false
+    }
+  }
+}

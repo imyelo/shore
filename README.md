@@ -1,1 +1,2 @@
-# shorturl
+# shore
+> shorturl service
