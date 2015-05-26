@@ -5,11 +5,14 @@ NODE_ENV = "production"
 PM2_START = pm2 start pm2.json
 
 FOREVER_UID = "shore"
+FOREVER_COMMAND = "node --harmony"
+
 FOREVER_OUTFILE = "./logs/out.log"
 FOREVER_ERRFILE = "./logs/err.log"
 FOREVER_LOGFILE = "./logs/log.log"
 
 FOREVER_START = forever start \
+  -c ${FOREVER_COMMAND} \
 	--uid ${FOREVER_UID} \
 	-l ${FOREVER_LOGFILE} \
 	-o ${FOREVER_OUTFILE} \
