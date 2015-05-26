@@ -1,4 +1,3 @@
-CONFIG_DIR = "./config"
 HOSTNAME = "0.0.0.0"
 DEBUG = shore:*
 NODE_ENV = "production"
@@ -28,6 +27,9 @@ init:
 dev: stop init
 	@DEBUG=${DEBUG} HOSTNAME=${HOSTNAME} pm2 start ./pm2.json
 	@pm2 logs
+
+server: stop init
+	@DEBUG=${DEBUG} HOSTNAME=${HOSTNAME} NODE_ENV=${NODE_ENV} ${FOREVER_START}
 
 stop:
 	-forever stop ${FOREVER_UID}
