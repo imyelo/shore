@@ -23,8 +23,6 @@ co(function *() {
   app.use(middlewares.router(app));
   route(app);
 
-  app.listen(config.self.PORT);
-
   // start server
   (function () {
     var hostname = process.env.HOSTNAME;
