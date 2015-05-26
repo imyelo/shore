@@ -26,7 +26,7 @@ init:
 
 # server
 dev: stop init
-	@DEBUG=${DEBUG} pm2 start ./pm2.json
+	@DEBUG=${DEBUG} HOSTNAME=${HOSTNAME} pm2 start ./pm2.json
 	@pm2 logs
 
 stop:

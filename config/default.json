@@ -7,7 +7,7 @@
     "DEBUG": "shore:*"
   },
   "self": {
-    "PORT": 3000,
+    "PORT": 3003,
     "FAVICON_PATH": "./public/favicon.ico",
     "TRUST_PROXY": true,
     "LOG": {
@@ -25,6 +25,15 @@
       "DIALECT": "sqlite",
       "STORAGE": "./data/db.sqlite",
       "FORCE": false
+    },
+    "REDIS": {
+      "HOST": "127.0.0.1",
+      "PORT": 6379,
+      "PASS": ""
+    },
+    "AUTH": {
+      "NAME": "yelo",
+      "PASS": "9bnu3dcr"
     }
   }
 }
