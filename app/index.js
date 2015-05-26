@@ -12,7 +12,7 @@ co(function *() {
 
   var db = yield Model.initialize;
 
-  // static
+  // body parser
   app.use(middlewares.bodyParser());
 
   // routes
