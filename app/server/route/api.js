@@ -1,9 +1,8 @@
+var api = require('../ctrl/api');
+
 module.exports = function (app) {
-  app.get('/api', function *() {
-    this.body = {
-      status: 0,
-      msg: '',
-      data: {}
-    };
-  });
+  app.get('/api', api.list);
+  app.get('/api/:id', api.detail);
+  app.post('/api', api.create);
+  app.delete('/api', api.remove);
 };

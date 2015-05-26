@@ -1,6 +1,7 @@
 var co = require('co');
 var koa = require('koa');
 var middlewares = require('koa-middlewares');
+var config = require('config');
 
 var app = koa();
 
@@ -11,13 +12,15 @@ co(function *() {
 
   var db = yield Model.initialize;
 
-  console.log('database ready');
+  // static
+  app.use(middlewares.bodyParser());
 
   // routes
   app.use(middlewares.router(app));
   route(app);
 
-  app.listen(3000);
+  app.listen(config.self.PORT);
+
 }).catch(function (err) {
   console.error(err);
 });
