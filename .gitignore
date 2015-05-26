@@ -2,7 +2,7 @@
 logs/*.log
 
 # database
-data/db.sqlite
+/data/db.sqlite
 
 # deps
 node_modules
