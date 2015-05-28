@@ -1,4 +1,6 @@
 var co = require('co');
+var CONSTANT = require('../constant');
+var redis = require('../lib/redis');
 var Yacht = require('../model').Yacht;
 
 exports.list = function *() {
@@ -14,6 +16,23 @@ exports.detail = function *() {
   }
 
   this.body = yacht;
+};
+
+exports.createThrottle = function *(next) {
+  var ip = this.getIp();
+  var key = CONSTANT.YACHT_CREATE_CACHE_KEY_PREFIX + ip;
+  var count = +(yield redis.get(key));
+  if (count >= CONSTANT.YACHT_CREATE_LIMIT_BURST) {
+    this.status = 403;
+    this.message = ['out of limit (',
+      CONSTANT.YACHT_CREATE_LIMIT_BURST,
+      '/',
+      CONSTANT.YACHT_CREATE_LIMIT_DURATION,
+      's).'].join('');
+    return;
+  }
+  redis.set(key, ++count, 'EX', CONSTANT.YACHT_CREATE_LIMIT_DURATION);
+  yield next;
 };
 
 exports.create = function *() {

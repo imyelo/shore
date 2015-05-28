@@ -1,0 +1,30 @@
+main {
+  text-align: center;
+  font-size: 12px;
+  padding-top: 30px;
+}
+#source {
+  padding: 1em 2em;
+  border: 1px solid #ccc;
+}
+#fire {
+  padding: 1em 2em;
+  background-color: #eee;
+  border: 0;
+  box-shadow: 0 3px #ddd;
+  color: #666;
+  -webkit-transition: 200ms all ease;
+          transition: 200ms all ease;
+}
+#fire:disabled {
+  color: #ccc;
+}
+#result {
+  margin: 30px 0;
+  padding: 1em;
+  color: #3E99F2;
+  text-decoration: underline;
+}
+a, a:hover {
+  color: #3E99F2;
+}

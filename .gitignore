@@ -3,6 +3,7 @@ logs/*.log
 
 # database
 /data/db.sqlite
+dump.rdb
 
 # deps
 node_modules

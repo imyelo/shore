@@ -1,4 +1,5 @@
-var thunkify = require('thunkify');
+var config = require('config');
+var auth = require('koa-basic-auth')({ name: config.self.AUTH.NAME, 'pass': config.self.AUTH.PASS});
 var redis = require('../lib/redis');
 var CONSTANT = require('../constant');
 
@@ -12,17 +13,17 @@ exports.ip = function *(next) {
 
 exports.auth = function *(next) {
   var ip = this.getIp();
-  var key = CONSTANT.AUTH_CACHE_KEY_PREFIX + ip;
+  var key = CONSTANT.AUTH_FAIL_CACHE_KEY_PREFIX + ip;
   var count = +(yield redis.get(key));
-  if (count >= CONSTANT.AUTH_MAX_FAIL_TIMES) {
+  if (count >= CONSTANT.ATUH_FAIL_LIMIT_BURST) {
     return this.throw(403);
   }
 
   try {
-    yield next;
+    yield auth.call(this, next);
   } catch (err) {
     if (err.status === 401) {
-      redis.set(key, ++count, 'EX', CONSTANT.AUTH_CACHE_EXPIRE);
+      redis.set(key, ++count, 'EX', CONSTANT.AUTH_FAIL_LIMIT_DURATION);
     }
     throw err;
   }
